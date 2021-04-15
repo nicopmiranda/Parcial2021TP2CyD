@@ -22,7 +22,18 @@
    * @param {*} inventors 
    */
   function addDiscoveries(inventor, discoveries, inventors){
+    let auxInventors = inventors.map(
+        elInventor => (
+          {
+            ...elInventor,
+            discoveries: ''
+          }
+        )
+      );
       
+      auxInventors[auxInventors.findIndex(elInventor => elInventor.last === inventor)].discoveries = discoveries;
+
+      return auxInventors;
   }
 
   console.log(addDiscoveries('Einstein', 

@@ -20,3 +20,31 @@ const beers = [
     { name: 'Stolen Fruit', abv: 4.6, label: 'https://s3.amazonaws.com/brewerydbapi/beer/YGT30k/upload_uVCHP7-large.png', type: 'Wheat' },
 ];
 
+
+const newURI = "https://tecnoshare.sharepoint.com/sites/beer";
+
+function modifyBaseURI(beers){
+  return beers.map(
+    beer => (
+      {
+        ...beer,
+        label: newURI + newURI + beer.label.split("beer")[1],
+        type: beer.type
+      }
+    )
+  );
+}
+
+function changeFileNameToBeerName(beers){
+  return beers.map(
+    beer => (
+      {
+        ...beer,
+        label: beer.label.split("/").slice(0,-1).join("/") + "/" + beer.name.replace(/ /g, "_"),
+        type: beer.type
+      }
+    )
+  );
+}
+
+console.log(changeFileNameToBeerName(modifyBaseURI(beers)));
